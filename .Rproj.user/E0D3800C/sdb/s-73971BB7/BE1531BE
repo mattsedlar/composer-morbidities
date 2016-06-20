@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "dat = read.csv(\"data/composer-maladies.csv\", colClasses = c(\"NULL\",\"factor\",\"factor\"))\n\nlibrary(data.table)\nlibrary(ggplot2)\nlibrary(plotly)\n\nSys.setenv(\"plotly_username\"=\"mattsedlar\")\nSys.setenv(\"plotly_api_key\"=\"5xgnmswdaw\")\n\ndat = data.table(dat)\n\ndat[,`freq` := .N, by=maladies]\n\ncolnames(dat) = c(\"Composer\",\"Morbidity\",\"freq\")\n\nggplot(dat, aes(x=Composer,y=Morbidity)) + geom_tile(aes(fill=freq)) +\n  labs(x=\"Composers\",y=\"Morbidities\") +\n  ggtitle(\"Most-Common Morbidities by Classical Composers\") +\n  scale_fill_gradient(low=\"#D03E43\",high=\"#6A2022\", name=\"Frequency\") +\n  theme(panel.background=element_rect(fill=\"#EA464B\"),\n        panel.grid=element_blank(),\n        panel.border=element_rect(fill=NA,color=\"#FFFFFF\"),\n        axis.text.x=element_text(angle=90,size=7,hjust=0),\n        axis.text.y=element_text(size=7,hjust=0),\n        axis.title.x=element_text(size=8,family = \"Helvetica\"),\n        axis.title.y=element_text(size=8,family = \"Helvetica\"),        \n        legend.title=element_text(size=8),\n        legend.text=element_text(size=7),\n        plot.title=element_text(size=15, family = \"Helvetica\", face=\"bold\"))\n\ng = ggplotly(tooltip=c(\"x\",\"y\"),width=100,height=850)\n\nplotly_POST(g, \"Most-Common Morbidities by Classical Composer\")\n",
+    "created" : 1466444654669.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2180087211",
+    "id" : "BE1531BE",
+    "lastKnownWriteTime" : 1466451947,
+    "last_content_update" : 1466453175778,
+    "path" : "/media/matts/USB DISK/Blog/composers/raw/exploratory.R",
+    "project_path" : "raw/exploratory.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
